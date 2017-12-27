@@ -58,6 +58,10 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
 
     // calculate cell dimentions for cells with fixed sizes
     row.cells.forEach(function (cell) {
+      // in case we're resizing, reset the previously calculated dimentions
+      cell.width = null
+      cell.height = null
+
       if (cell._width === 'auto') autoWidthCells.push(cell)
       else cell.width = normalizeSize(cell._width, viewportWidth)
       if (cell._height === 'auto') autoHeight = true

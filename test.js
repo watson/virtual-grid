@@ -154,3 +154,20 @@ test('grid.update', function (t) {
   t.equal(grid.toString(), 'bar  ')
   t.end()
 })
+
+test('grid.resize', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 1,
+    rows: [[{text: 'this is a test'}]]
+  })
+  t.equal(grid.toString(),
+  // 1234567890
+    'this is a ')
+  grid.resize(7, 2)
+  t.equal(grid.toString(),
+  // 1234567
+    'this is\n' +
+    'a test ')
+  t.end()
+})
