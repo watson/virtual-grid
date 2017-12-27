@@ -63,18 +63,20 @@ are supported:
 
 A `cell` object supports the following properties:
 
-- `width` - The width of the cell. If the value is a string containing a
-  percent sign (`%`), it's treated as a percentage of the total width of
-  the viewport. Otherwise it's treated as an integer representing the
-  width in columns (defaults to `100%`)
-- `height` - The height of the cell. If the value is a string containing
-  a percent sign (`%`), it's treated as a percentage of the total height
-  of the viewport. Otherwise it's treated as an integer representing the
-  height in rows (defaults to `100%`)
+- `width` - The width of the cell. If the value is the string `auto` it
+  will fill out the remaining space in the viewport. If the value is a
+  string containing a percent sign (e.g. `25%`), it's treated as a
+  percentage of the total width of the viewport. Otherwise it's treated
+  as an integer representing the width in columns (defaults to `auto`)
+- `height` - The height of the cell. If the value is the string `auto`
+  it will fill out the remaining space in the viewport. If the value is
+  a string containing a percent sign (e.g. `25%`), it's treated as a
+  percentage of the total height of the viewport. Otherwise it's treated
+  as an integer representing the height in rows (defaults to `auto`)
 - `text` - Default text content of the cell (defaults to an empty
   string)
 - `wrap` - Set to `false` to disable automatic line wrapping (defaults
-  to `true)
+  to `true`)
 
 ### `grid = new Grid(rows)`
 
@@ -94,13 +96,14 @@ Arguments:
 - `cell` - The cell index inside the row
 - `text` - The new text content of the cell
 
-### `grid.toString()`
-
-Get the viewport as a string.
-
 ### `grid.resize(width, height)`
 
 Resize the viewport to new `width` and `height`.
+
+### `grid.toString()`
+
+Render all content in all cells in the grid and return the result as one
+big string.
 
 ## License
 
