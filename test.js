@@ -171,3 +171,16 @@ test('grid.resize', function (t) {
     'a test ')
   t.end()
 })
+
+test('onUpdate', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 1,
+    rows: [[{}]],
+    onUpdate: function () {
+      t.equal(grid.toString(), 'test      ')
+      t.end()
+    }
+  })
+  grid.update(0, 0, 'test')
+})

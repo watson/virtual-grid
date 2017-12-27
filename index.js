@@ -9,6 +9,8 @@ module.exports = Grid
 function Grid (opts) {
   if (!(this instanceof Grid)) return new Grid(opts)
 
+  this._onUpdate = opts.onUpdate || function () {}
+
   const rows = Array.isArray(opts) ? opts : opts.rows
   this._rows = rows.map(function (row) {
     if (Array.isArray(row)) row = {cells: row}
@@ -46,6 +48,7 @@ Grid.prototype.update = function (row, col, text) {
   const cell = this._rows[row].cells[col]
   cell.text = text
   cell.lines = renderCellLines(cell)
+  this._onUpdate()
 }
 
 Grid.prototype.resize = function (viewportWidth, viewportHeight) {
