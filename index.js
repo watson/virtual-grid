@@ -49,12 +49,10 @@ Grid.prototype.update = function (row, col, text) {
 }
 
 Grid.prototype.resize = function (viewportWidth, viewportHeight) {
-  const self = this
   const autoHeightRows = []
   let fixedHeight = 0
 
   this._rows.forEach(function (row) {
-    const y = calcY(self._rows, row)
     const autoWidthCells = []
     let autoHeight = false
 
@@ -77,14 +75,6 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
       }
       cell.width += (remainingWidth % autoWidthCells.length) * autoWidthCells.length
     }
-
-    // populate remaining cell properties
-    row.cells.forEach(function (cell) {
-      cell.whitespace = Array(cell.width + 1).join(' ')
-      cell.lines = renderCellLines(cell)
-      cell.x = calcX(row, cell)
-      cell.y = y
-    })
 
     if (autoHeight) {
       autoHeightRows.push(row)
@@ -115,6 +105,18 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
       })
     }
   }
+
+  // populate remaining cell properties
+  const self = this
+  this._rows.forEach(function (row) {
+    const y = calcY(self._rows, row)
+    row.cells.forEach(function (cell) {
+      cell.whitespace = Array(cell.width + 1).join(' ')
+      cell.lines = renderCellLines(cell)
+      cell.x = calcX(row, cell)
+      cell.y = y
+    })
+  })
 }
 
 function normalizeSize (size, max) {
