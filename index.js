@@ -138,26 +138,6 @@ function calcRemainingWidth (cells, viewportWidth) {
   return viewportWidth - fixedWidth
 }
 
-// function calcRemainingHeight (rows, viewportHeight) {
-//   const fixedHeight = rows.reduce(function (total, cell) {
-//     return total + (cell.height || 0)
-//   }, 0)
-//   return viewportHeight - fixedHeight
-// }
-
-// function calculateAutoSizes (size, max) {
-//   if (Number.isFinite(size) || size === 'auto') {
-//     return size
-//   } else if (typeof size === 'string') {
-//     const isPct = size.indexOf('%') !== -1
-//     return isPct
-//       ? Math.round(parseInt(size, 10) / 100 * max)
-//       : parseInt(size, 10)
-//   } else {
-//     throw new Error('Unexpected size: ' + size)
-//   }
-// }
-
 function renderCellLines (cell) {
   let text = cell.text
   if (cell.wrap) text = wrap(text, cell.width)
