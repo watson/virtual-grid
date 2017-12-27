@@ -142,3 +142,15 @@ test('span cells', function (t) {
     '                    ')
   t.end()
 })
+
+test('grid.update', function (t) {
+  const grid = new Grid({
+    width: 5,
+    height: 1,
+    rows: [[{text: 'foo'}]]
+  })
+  t.equal(grid.toString(), 'foo  ')
+  grid.update(0, 0, 'bar')
+  t.equal(grid.toString(), 'bar  ')
+  t.end()
+})
