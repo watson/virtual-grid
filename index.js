@@ -43,7 +43,7 @@ Grid.prototype.toString = function () {
 }
 
 Grid.prototype.update = function (row, col, text) {
-  const cell = this._rows[row][col]
+  const cell = this._rows[row].cells[col]
   cell.text = text
   cell.lines = renderCellLines(cell)
 }
