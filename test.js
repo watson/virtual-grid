@@ -41,6 +41,104 @@ test('cell full', function (t) {
   t.end()
 })
 
+test('padding - int', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 5,
+    rows: [[{text: 'foo\nbar', padding: 1}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '          \n' +
+    ' foo      \n' +
+    ' bar      \n' +
+    '          \n' +
+    '          ')
+  t.end()
+})
+
+test('padding - array(1)', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 5,
+    rows: [[{text: 'foo\nbar', padding: [1]}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '          \n' +
+    ' foo      \n' +
+    ' bar      \n' +
+    '          \n' +
+    '          ')
+  t.end()
+})
+
+test('padding - array(2)', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 5,
+    rows: [[{text: 'foo\nbar', padding: [1, 2]}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '          \n' +
+    '  foo     \n' +
+    '  bar     \n' +
+    '          \n' +
+    '          ')
+  t.end()
+})
+
+test('padding - array(3)', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 5,
+    rows: [[{text: 'foo\nbar', padding: [1, 2, 3]}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '          \n' +
+    '  foo     \n' +
+    '          \n' +
+    '          \n' +
+    '          ')
+  t.end()
+})
+
+test('padding right', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 1,
+    rows: [[{text: '12345678901234567890', padding: [0, 1, 0, 0], wrap: false}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '123456789 ')
+  t.end()
+})
+
+test('padding - array(4)', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 5,
+    rows: [[{text: 'foo\nbar', padding: [1, 2, 3, 4]}]]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    '          \n' +
+    '    foo   \n' +
+    '          \n' +
+    '          \n' +
+    '          ')
+  t.end()
+})
+
 test('cell wrap', function (t) {
   const grid = new Grid({
     width: 10,
@@ -227,6 +325,7 @@ test('grid.cellAt', function (t) {
     wrap: true,
     width: 5,
     height: 4,
+    padding: [0, 0, 0, 0],
     x: 0,
     y: 0
   })
@@ -235,6 +334,7 @@ test('grid.cellAt', function (t) {
     wrap: true,
     width: 2,
     height: 5,
+    padding: [0, 0, 0, 0],
     x: 0,
     y: 4
   })
@@ -243,6 +343,7 @@ test('grid.cellAt', function (t) {
     wrap: true,
     width: 3,
     height: 5,
+    padding: [0, 0, 0, 0],
     x: 2,
     y: 4
   })

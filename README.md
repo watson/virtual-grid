@@ -79,6 +79,10 @@ A `cell` object supports the following properties:
   string)
 - `wrap` - Set to `false` to disable automatic line wrapping (defaults
   to `true`)
+- `padding` - An optional array of cell padding for the top, right,
+  bottom, and left edge of the cell respectively, e.g. `[0, 2, 0, 2]`
+  for 2 chars of padding on the left and right edge only. If given an
+  integer instead of an array, the padding is applied to all edges
 
 You can use strings instead of objects for cells. This is equivalent to
 `{text: cell}`

@@ -24,7 +24,8 @@ function Grid (opts) {
         _width: cell.width || 'auto',
         _height: cell.height || 'auto',
         text: cell.text || '',
-        wrap: cell.wrap !== false
+        wrap: cell.wrap !== false,
+        padding: normalizePadding(cell.padding)
       }
     })
     return row
@@ -138,6 +139,7 @@ Grid.prototype.cellAt = function (row, index) {
     wrap: cell.wrap,
     width: cell.width,
     height: cell.height,
+    padding: cell.padding,
     x: cell.x,
     y: cell.y
   }
@@ -157,6 +159,31 @@ function normalizeSize (size, max) {
   }
 }
 
+function normalizePadding (p) {
+  // use same normalization rules as for CSS
+  if (!p) p = [0, 0, 0, 0]
+  else if (!Array.isArray(p)) p = [p, p, p, p]
+  switch (p.length) {
+    case 0:
+      p = [0, 0, 0, 0]
+      break
+    case 1:
+      p = [p[0], p[0], p[0], p[0]]
+      break
+    case 2:
+      p = [p[0], p[1], p[0], p[1]]
+      break
+    case 3:
+      p = [p[0], p[1], p[2], p[1]]
+      break
+    case 4:
+      break
+    default:
+      p = p.slice(0, 4)
+  }
+  return p
+}
+
 function calcRemainingWidth (cells, viewportWidth) {
   const fixedWidth = cells.reduce(function (total, cell) {
     return total + (cell.width || 0)
@@ -165,16 +192,29 @@ function calcRemainingWidth (cells, viewportWidth) {
 }
 
 function renderCellLines (cell) {
+  const topPad = cell.padding[0]
+  const rightPad = cell.padding[1]
+  const bottomPad = cell.padding[2]
+  const leftPad = cell.padding[3]
+  const textWidth = cell.width - leftPad - rightPad
+  const textHeight = cell.height - topPad - bottomPad
   let text = cell.text
-  if (cell.wrap) text = wrap(text, cell.width)
-  const lines = text.split('\n').slice(0, cell.height)
+  if (cell.wrap) text = wrap(text, textWidth)
+  let lines = text.split('\n').slice(0, textHeight)
+  if (leftPad) {
+    const padding = Array(leftPad + 1).join(' ')
+    lines = lines.map(function (line) {
+      return padding + line
+    })
+  }
+  if (topPad) lines = Array(topPad).fill('').concat(lines)
   if (cell.wrap) {
     return lines.map(function (line) {
       return pad(line, cell.width)
     })
   } else {
     return lines.map(function (line) {
-      return pad(substr(line, 0, cell.width), cell.width)
+      return pad(substr(line, 0, textWidth), cell.width)
     })
   }
 }
