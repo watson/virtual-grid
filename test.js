@@ -16,6 +16,19 @@ test('translate percentages', function (t) {
   t.end()
 })
 
+test('cell as string', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 1,
+    rows: [['foo']]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    'foo       ')
+  t.end()
+})
+
 test('cell full', function (t) {
   const text = '0123456789\nabcdefghij\n0123456789'
   const grid = new Grid({

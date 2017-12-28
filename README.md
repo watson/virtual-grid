@@ -82,6 +82,9 @@ A `cell` object supports the following properties:
 - `wrap` - Set to `false` to disable automatic line wrapping (defaults
   to `true`)
 
+You can use strings instead of objects for cells. This is equivalent to
+`{text: cell}`
+
 ### `grid = new Grid(rows)`
 
 An alias for:

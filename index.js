@@ -15,6 +15,7 @@ function Grid (opts) {
   this._rows = rows.map(function (row) {
     if (Array.isArray(row)) row = {cells: row}
     row.cells = row.cells.map(function (cell) {
+      if (typeof cell === 'string') cell = {text: cell}
       return {
         _width: cell.width || 'auto',
         _height: cell.height || 'auto',
