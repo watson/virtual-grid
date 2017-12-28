@@ -1,15 +1,19 @@
 'use strict'
 
+const inherits = require('util').inherits
+const EventEmitter = require('events')
 const wrap = require('wrap-ansi')
 const substr = require('ansi-substring')
 const pad = require('fixed-width-string')
+
+inherits(Grid, EventEmitter)
 
 module.exports = Grid
 
 function Grid (opts) {
   if (!(this instanceof Grid)) return new Grid(opts)
 
-  this._onUpdate = opts.onUpdate || function () {}
+  EventEmitter.call(this)
 
   const rows = Array.isArray(opts) ? opts : opts.rows
   this._rows = rows.map(function (row) {
@@ -49,7 +53,7 @@ Grid.prototype.update = function (row, col, text) {
   const cell = this._rows[row].cells[col]
   cell.text = text
   cell.lines = renderCellLines(cell)
-  this._onUpdate()
+  this.emit('update')
 }
 
 Grid.prototype.resize = function (viewportWidth, viewportHeight) {

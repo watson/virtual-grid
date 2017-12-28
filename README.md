@@ -62,8 +62,6 @@ are supported:
 - `height` - The total height of the viewport (defaults to
   `process.stdout.rows`)
 - `rows` - An array of rows. Each row is an array of `cell` objects
-- `onUpdate` - An optional function which will be called every time one
-  of the cells have been updated
 
 A `cell` object supports the following properties:
 
@@ -92,6 +90,10 @@ An alias for:
 ```js
 new Grid({rows: rows})
 ```
+
+### Event: `update`
+
+Emitted every time a cell in the grid is updated.
 
 ### `grid.update(row, cell, text)`
 

@@ -213,15 +213,15 @@ test('grid.resize', function (t) {
   t.end()
 })
 
-test('onUpdate', function (t) {
+test('update event', function (t) {
   const grid = new Grid({
     width: 10,
     height: 1,
-    rows: [[{}]],
-    onUpdate: function () {
-      t.equal(grid.toString(), 'test      ')
-      t.end()
-    }
+    rows: [[{}]]
+  })
+  grid.on('update', function () {
+    t.equal(grid.toString(), 'test      ')
+    t.end()
   })
   grid.update(0, 0, 'test')
 })
