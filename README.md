@@ -61,7 +61,7 @@ are supported:
   `process.stdout.columns`)
 - `height` - The total height of the viewport (defaults to
   `process.stdout.rows`)
-- `rows` - An array of rows. Each row is an array of `cell` objects.
+- `rows` - An array of rows. Each row is an array of `cell` objects
 - `onUpdate` - An optional function which will be called every time one
   of the cells have been updated
 
