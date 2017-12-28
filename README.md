@@ -2,6 +2,10 @@
 
 A viewport into a virtual grid of text cells.
 
+Renderes cells in a grid. Each cell contains text that is wrapped and
+truncated to fit inside the cell. Full support for ANSI colors. Useful
+as a layout manager for terminal apps.
+
 [![Build status](https://travis-ci.org/watson/virtual-grid.svg?branch=master)](https://travis-ci.org/watson/virtual-grid)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
