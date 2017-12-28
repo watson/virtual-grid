@@ -108,24 +108,24 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
       row = autoHeightRows[i]
       row.height = autoHeight
     }
-    row.height += (remainingHeight % autoHeightRows.length) * autoHeightRows.length
+    row.height += remainingHeight % autoHeightRows.length
 
     // inherit row height on all calls that are 'auto'
-    for (let i = 0; i < autoHeightRows.length; i++) {
-      autoHeightRows[i].cells.forEach(function (cell) {
+    autoHeightRows.forEach(function (row) {
+      row.cells.forEach(function (cell) {
         cell.height = cell.height || row.height
       })
-    }
+    })
   }
 
   // populate remaining cell properties
   const self = this
-  this._rows.forEach(function (row) {
-    const y = calcY(self._rows, row)
-    row.cells.forEach(function (cell) {
+  this._rows.forEach(function (row, index) {
+    const y = calcY(self._rows, index)
+    row.cells.forEach(function (cell, index) {
       cell.whitespace = Array(cell.width + 1).join(' ')
       cell.lines = renderCellLines(cell)
-      cell.x = calcX(row, cell)
+      cell.x = calcX(row, index)
       cell.y = y
     })
   })
@@ -175,12 +175,12 @@ function rowHeight (row) {
 
 function calcX (row, cell) {
   let x = 0
-  while (--cell > 0) x += row.cells[cell].width
+  while (--cell >= 0) x += row.cells[cell].width
   return x
 }
 
 function calcY (rows, row) {
   let y = 0
-  while (--row > 0) y += rows[row].height
+  while (--row >= 0) y += rows[row].height
   return y
 }
