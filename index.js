@@ -81,7 +81,7 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
         cell = autoWidthCells[i]
         cell.width = autoWidth
       }
-      cell.width += (remainingWidth % autoWidthCells.length) * autoWidthCells.length
+      cell.width += remainingWidth % autoWidthCells.length
     }
 
     if (autoHeight) {

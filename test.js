@@ -131,6 +131,34 @@ test('omit overflow lines', function (t) {
   t.end()
 })
 
+test('two columns - even', function (t) {
+  const grid = new Grid({
+    width: 20,
+    height: 2,
+    rows: [['left', 'right']]
+  })
+
+  t.equal(grid.toString(),
+  // 12345678901234567890
+    'left      right     \n' +
+    '                    ')
+  t.end()
+})
+
+test('two columns - odd', function (t) {
+  const grid = new Grid({
+    width: 21,
+    height: 2,
+    rows: [['left', 'right']]
+  })
+
+  t.equal(grid.toString(),
+  // 123456789012345678901
+    'left      right      \n' +
+    '                     ')
+  t.end()
+})
+
 test('span cells', function (t) {
   const grid = new Grid({
     width: 20,
