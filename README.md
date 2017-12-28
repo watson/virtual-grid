@@ -109,7 +109,11 @@ Arguments:
 
 Resize the viewport to new `width` and `height`.
 
-### `grid.toString()`
+### `cell = grid.cellAt(row, index)`
+
+Return the cell at the gien `row` and index`.
+
+### `str = grid.toString()`
 
 Render all content in all cells in the grid and return the result as one
 big string.

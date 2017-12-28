@@ -213,6 +213,42 @@ test('grid.resize', function (t) {
   t.end()
 })
 
+test('grid.cellAt', function (t) {
+  const grid = new Grid({
+    width: 5,
+    height: 9,
+    rows: [
+      ['a'],
+      ['b', 'c']
+    ]
+  })
+  t.deepEqual(grid.cellAt(0, 0), {
+    text: 'a',
+    wrap: true,
+    width: 5,
+    height: 4,
+    x: 0,
+    y: 0
+  })
+  t.deepEqual(grid.cellAt(1, 0), {
+    text: 'b',
+    wrap: true,
+    width: 2,
+    height: 5,
+    x: 0,
+    y: 4
+  })
+  t.deepEqual(grid.cellAt(1, 1), {
+    text: 'c',
+    wrap: true,
+    width: 3,
+    height: 5,
+    x: 2,
+    y: 4
+  })
+  t.end()
+})
+
 test('update event', function (t) {
   const grid = new Grid({
     width: 10,

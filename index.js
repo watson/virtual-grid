@@ -131,6 +131,18 @@ Grid.prototype.resize = function (viewportWidth, viewportHeight) {
   })
 }
 
+Grid.prototype.cellAt = function (row, index) {
+  const cell = this._rows[row].cells[index]
+  return {
+    text: cell.text,
+    wrap: cell.wrap,
+    width: cell.width,
+    height: cell.height,
+    x: cell.x,
+    y: cell.y
+  }
+}
+
 function normalizeSize (size, max) {
   if (Number.isFinite(size) || size === 'auto') {
     // we'll deal with 'auto' when we have normalized everything else
