@@ -1,6 +1,6 @@
 {
   "name": "virtual-grid",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A viewport into a virtual grid of text cells",
   "main": "index.js",
   "dependencies": {
@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/watson/virtual-grid#readme",
   "coordinates": [
-    51.396924,
-    12.3940333
+    51.3978265,
+    12.3975969
   ]
 }
