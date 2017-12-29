@@ -362,3 +362,16 @@ test('update event', function (t) {
   })
   grid.update(0, 0, 'test')
 })
+
+test('https://github.com/chalk/wrap-ansi/issues/24', function (t) {
+  const grid = new Grid({
+    width: 10,
+    height: 1,
+    rows: [['foo  bar']]
+  })
+
+  t.equal(grid.toString(),
+  // 1234567890
+    'foo  bar  ')
+  t.end()
+})

@@ -6,7 +6,7 @@
   "dependencies": {
     "ansi-substring": "^1.0.3",
     "fixed-width-string": "^1.0.0",
-    "wrap-ansi": "^3.0.1"
+    "wrap-ansi": "^2.1.0"
   },
   "devDependencies": {
     "chalk": "^2.3.0",
